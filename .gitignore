@@ -3,3 +3,9 @@
 /.metadata/
 /dvt/
 /RemoteSystemsTempFiles/
+
+*/targetConfigs/
+*/Debug/
+*/Release/
+
+*/.launches/
