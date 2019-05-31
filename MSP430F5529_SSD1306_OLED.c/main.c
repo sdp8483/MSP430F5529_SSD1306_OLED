@@ -23,6 +23,7 @@
 #include <msp430.h>
 #include "ssd1306.h"
 #include "i2c.h"
+#include "clock.h"
 
 extern unsigned char *PTxData;                  // Pointer to TX data, defined in i2c.h
 extern unsigned char TXByteCtr;                 // number of bytes to transmit, defined in i2c.h
@@ -33,6 +34,8 @@ int main(void)
 {
 
     WDTCTL = WDTPW + WDTHOLD;                   // Stop WDT
+    clock_init();
+
     P1DIR |= BIT5;                              // P1.5 output
     P1OUT |= BIT5;                              // P1.5 high to turn on power to display
 

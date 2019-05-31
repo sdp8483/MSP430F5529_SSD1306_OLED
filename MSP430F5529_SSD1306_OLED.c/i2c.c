@@ -17,9 +17,9 @@ void i2c_init(void) {
     P4SEL |= SDA | SCL;                         // Assign I2C pins to USCI_B1
     UCB1CTL1 |= UCSWRST;                        // Enable SW reset
     UCB1CTL0 = UCMST + UCMODE_3 + UCSYNC;       // I2C Master, synchronous mode
-    UCB1CTL1 = UCSSEL_2 + UCSWRST;              // Use SMCLK, keep SW reset
-    UCB1BR0 = 12;                               // fSCL = SMCLK/12 = ~100kHz
-    UCB1BR1 = 0;
+    UCB1CTL1 = UCSSEL_2 + UCSWRST;              // Use SMCLK=24MHz, keep SW reset
+    UCB1BR0 = 64;                               // fSCL = SMCLK/64 = ~400kHz
+    UCB1BR1 = 0;                                // UCBRx = (UCxxBR0 + UCxxBR1 * 256) -> fSCL = SMCLK/USBRx
     UCB1I2CSA = 0x3C;                           // Slave Address is 0x3C
     UCB1CTL1 &= ~UCSWRST;                       // Clear SW reset, resume operation
     UCB1IE |= UCTXIE;                           // Enable TX interrupt
